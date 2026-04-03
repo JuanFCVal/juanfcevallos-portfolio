@@ -1,5 +1,5 @@
 "use client";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useEffect, useRef, useState } from "react";
 
 type Animation = "fade-up" | "fade-down" | "fade-left" | "fade-right" | "scale-in";
 
@@ -9,7 +9,6 @@ type Props = {
   animation?: Animation;
   delay?: number;
   threshold?: number;
-  as?: keyof React.JSX.IntrinsicElements;
 };
 
 export default function AnimateOnScroll({
@@ -18,17 +17,35 @@ export default function AnimateOnScroll({
   animation = "fade-up",
   delay = 0,
   threshold = 0.15,
-  as: Tag = "div",
 }: Props) {
-  const { ref, isVisible } = useScrollAnimation(threshold);
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
 
   return (
-    <Tag
-      ref={ref as React.Ref<HTMLDivElement>}
+    <div
+      ref={ref}
       className={`aos ${animation} ${isVisible ? "visible" : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
-    </Tag>
+    </div>
   );
 }
