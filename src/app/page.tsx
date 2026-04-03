@@ -1,11 +1,11 @@
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import Narrative from "@/components/Narrative";
-import Leadership from "@/components/Leadership";
-import Architecture from "@/components/Architecture";
-import TikTok from "@/components/TikTok";
-import BentoBox from "@/components/BentoBox";
-import Contact from "@/components/Contact";
+import Header from "@/components/header/Header";
+import Hero from "@/components/hero/Hero";
+import Narrative from "@/components/narrative/Narrative";
+import Leadership from "@/components/leadership/Leadership";
+import Architecture from "@/components/architecture/Architecture";
+import TikTok from "@/components/tiktok/TikTok";
+import BentoBox from "@/components/bento/BentoBox";
+import Contact from "@/components/contact/Contact";
 
 export default function Page() {
   return (

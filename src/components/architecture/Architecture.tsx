@@ -1,3 +1,6 @@
+import ArrowDownIcon from "./icons/ArrowDownIcon";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
+
 const layers = [
   {
     id: "mobile",
@@ -46,16 +49,14 @@ const layers = [
   },
 ];
 
-function ArrowDownIcon() {
-  return (
-    <div className="flex justify-center my-1">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="12" y1="5" x2="12" y2="19" />
-        <polyline points="19 12 12 19 5 12" />
-      </svg>
-    </div>
-  );
-}
+const architecturePrinciples = [
+  { title: "Separation of Concerns", desc: "Each layer has a single responsibility and communicates via typed APIs" },
+  { title: "Cloud-Native by Default", desc: "AWS Lambda, ECS, and RDS for elastic scaling without infrastructure overhead" },
+  { title: "Zero-Trust Security", desc: "Auth at every boundary, RBAC enforcement, and audit trails throughout" },
+  { title: "Developer Experience First", desc: "Type-safe end-to-end with tRPC + TypeScript, local dev parity" },
+];
+
+const coreStack = ["Next.js", "React Native", "Node.js", ".NET", "AWS", "Docker", "PostgreSQL", "MongoDB", "Redis", "TypeScript", "tRPC", "Auth0"];
 
 export default function Architecture() {
   return (
@@ -67,8 +68,7 @@ export default function Architecture() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
-          {/* Left: Text */}
-          <div>
+          <AnimateOnScroll animation="fade-right">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-[#E85D26]" />
               <span className="text-xs font-bold tracking-[0.3em] text-[#E85D26] uppercase">Architecture</span>
@@ -84,29 +84,24 @@ export default function Architecture() {
               observable, and connected through a typed contract layer.
             </p>
 
-            {/* Architecture principles */}
             <div className="space-y-4">
-              {[
-                { title: "Separation of Concerns", desc: "Each layer has a single responsibility and communicates via typed APIs" },
-                { title: "Cloud-Native by Default", desc: "AWS Lambda, ECS, and RDS for elastic scaling without infrastructure overhead" },
-                { title: "Zero-Trust Security", desc: "Auth at every boundary, RBAC enforcement, and audit trails throughout" },
-                { title: "Developer Experience First", desc: "Type-safe end-to-end with tRPC + TypeScript, local dev parity" },
-              ].map((p) => (
-                <div key={p.title} className="flex gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#E85D26] mt-1.5 flex-shrink-0" />
-                  <div>
-                    <div className="text-sm font-bold text-[#1B2A4A]">{p.title}</div>
-                    <div className="text-xs text-slate-500 mt-0.5">{p.desc}</div>
+              {architecturePrinciples.map((p, i) => (
+                <AnimateOnScroll key={p.title} animation="fade-right" delay={i * 80}>
+                  <div className="flex gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#E85D26] mt-1.5 shrink-0" />
+                    <div>
+                      <div className="text-sm font-bold text-[#1B2A4A]">{p.title}</div>
+                      <div className="text-xs text-slate-500 mt-0.5">{p.desc}</div>
+                    </div>
                   </div>
-                </div>
+                </AnimateOnScroll>
               ))}
             </div>
 
-            {/* Tech stack tags */}
             <div className="mt-8 pt-6 border-t border-slate-200">
               <div className="text-xs font-bold text-slate-400 tracking-wider mb-3 uppercase">Core Stack</div>
               <div className="flex flex-wrap gap-2">
-                {["Next.js", "React Native", "Node.js", ".NET", "AWS", "Docker", "PostgreSQL", "MongoDB", "Redis", "TypeScript", "tRPC", "Auth0"].map((t) => (
+                {coreStack.map((t) => (
                   <span
                     key={t}
                     className="text-xs font-semibold px-2.5 py-1 rounded-full text-[#1B2A4A] border border-[#1B2A4A]/20 bg-white"
@@ -116,27 +111,26 @@ export default function Architecture() {
                 ))}
               </div>
             </div>
-          </div>
+          </AnimateOnScroll>
 
-          {/* Right: Flow diagram */}
           <div className="relative">
-            {/* Platform label */}
-            <div className="text-center mb-6">
-              <span
-                className="inline-block text-xs font-bold tracking-[0.2em] text-[#2D4A6E] px-4 py-1.5 rounded-full border border-[#2D4A6E]/30"
-                style={{ background: "rgba(45,74,110,0.06)" }}
-              >
-                PPM / SORVO PLATFORM
-              </span>
-            </div>
+            <AnimateOnScroll animation="fade-down">
+              <div className="text-center mb-6">
+                <span
+                  className="inline-block text-xs font-bold tracking-[0.2em] text-[#2D4A6E] px-4 py-1.5 rounded-full border border-[#2D4A6E]/30"
+                  style={{ background: "rgba(45,74,110,0.06)" }}
+                >
+                  PPM / SORVO PLATFORM
+                </span>
+              </div>
+            </AnimateOnScroll>
 
             <div className="relative">
-              {/* Vertical connector line */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#E85D26]/20 via-[#2D4A6E]/20 to-[#E85D26]/20 transform -translate-x-1/2" />
+              <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#E85D26]/20 via-[#2D4A6E]/20 to-[#E85D26]/20 transform -translate-x-1/2" />
 
               <div className="space-y-0">
                 {layers.map((layer, i) => (
-                  <div key={layer.id}>
+                  <AnimateOnScroll key={layer.id} animation="fade-left" delay={i * 100}>
                     <div
                       className="relative mx-auto max-w-sm p-4 rounded-xl border-2 transition-all hover:shadow-md hover:scale-[1.02] cursor-default"
                       style={{
@@ -144,7 +138,6 @@ export default function Architecture() {
                         borderColor: layer.border,
                       }}
                     >
-                      {/* Node number */}
                       <div
                         className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-black"
                         style={{ background: layer.color }}
@@ -165,9 +158,8 @@ export default function Architecture() {
                       </div>
                     </div>
 
-                    {/* Arrow between boxes (except last) */}
                     {i < layers.length - 1 && <ArrowDownIcon />}
-                  </div>
+                  </AnimateOnScroll>
                 ))}
               </div>
             </div>

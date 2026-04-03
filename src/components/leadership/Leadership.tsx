@@ -1,3 +1,6 @@
+import CheckIcon from "./icons/CheckIcon";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
+
 const experiences = [
   {
     role: "Tech Lead",
@@ -40,14 +43,6 @@ const experiences = [
   },
 ];
 
-function CheckIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 mt-0.5">
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
-
 export default function Leadership() {
   return (
     <section
@@ -56,8 +51,7 @@ export default function Leadership() {
       style={{ background: "#F8F9FC" }}
     >
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section header */}
-        <div className="mb-12">
+        <AnimateOnScroll animation="fade-right" className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-0.5 bg-[#E85D26]" />
             <span className="text-xs font-bold tracking-[0.3em] text-[#E85D26] uppercase">Leadership</span>
@@ -71,17 +65,14 @@ export default function Leadership() {
             A track record of leading teams, delivering products, and establishing
             engineering excellence across multiple organizations and geographies.
           </p>
-        </div>
+        </AnimateOnScroll>
 
-        {/* Timeline */}
         <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#1B2A4A] via-[#2D4A6E] to-transparent hidden md:block" />
+          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#1B2A4A] via-[#2D4A6E] to-transparent hidden md:block" />
 
           <div className="flex flex-col gap-10">
             {experiences.map((exp, i) => (
-              <div key={i} className="relative md:pl-14">
-                {/* Timeline dot */}
+              <AnimateOnScroll key={i} animation="fade-up" delay={i * 100} className="relative md:pl-14">
                 <div className="absolute left-2.5 top-5 w-3 h-3 rounded-full bg-[#E85D26] ring-4 ring-[#F8F9FC] hidden md:block" />
 
                 <div
@@ -93,7 +84,7 @@ export default function Leadership() {
                       <h3 className="text-xl font-black text-[#1B2A4A] tracking-tight">{exp.role}</h3>
                       <div className="text-[#2D4A6E] font-bold text-sm mt-0.5">{exp.company}</div>
                     </div>
-                    <div className="text-right flex-shrink-0">
+                    <div className="text-right shrink-0">
                       <div className="text-xs font-bold text-[#E85D26] tracking-wider bg-[#E85D26]/10 px-2 py-1 rounded">
                         {exp.period}
                       </div>
@@ -112,7 +103,6 @@ export default function Leadership() {
                     ))}
                   </ul>
 
-                  {/* Tech tags */}
                   <div className="flex flex-wrap gap-2">
                     {exp.tech.map((t) => (
                       <span
@@ -124,7 +114,7 @@ export default function Leadership() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>
