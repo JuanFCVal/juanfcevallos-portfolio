@@ -3,26 +3,26 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 const stats = [
   {
-    stat: "60%",
-    label: "Reduction in deployment time",
-    desc: "Through CI/CD automation and containerization strategy",
+    stat: "Ownership",
+    label: "End-to-End Delivery",
+    desc: "Led projects from idea to production, ensuring alignment between business goals and technical execution",
   },
   {
-    stat: "3x",
-    label: "Developer productivity",
-    desc: "Via internal AI tools and standardized workflows",
+    stat: "Accountability",
+    label: "I'll Ship It",
+    desc: "Took responsibility for delivery, I'll learn what it takes to get the job done.",
   },
   {
-    stat: "99.9%",
-    label: "System uptime achieved",
-    desc: "With microservice architecture and health monitoring",
+    stat: "Maintainability",
+    label: "Scalable Systems",
+    desc: "Applied clean architecture and design patterns to build maintainable systems",
   },
 ];
 
 export default function Narrative() {
   return (
     <section
-      id="experience"
+      id="about"
       className="relative overflow-hidden py-24 lg:py-32"
       style={{ background: "#1B2A4A" }}
     >
@@ -39,26 +39,27 @@ export default function Narrative() {
         <AnimateOnScroll animation="fade-up">
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="w-12 h-0.5 bg-[#E85D26]" />
-            <span className="text-xs font-bold tracking-[0.3em] text-[#E85D26] uppercase">Core Narrative</span>
+            <span className="text-xs font-bold tracking-[0.3em] text-[#E85D26] uppercase">JuanFCVal Dev</span>
             <div className="w-12 h-0.5 bg-[#E85D26]" />
           </div>
 
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-black leading-tight text-white mb-8 tracking-tight">
-            TRANSFORMING BUSINESS GOALS INTO{" "}
-            <span className="shimmer-text">ARCHITECTURAL REALITY.</span>
+            TRANSFORMING IDEAS INTO {" "}
+            <span className="shimmer-text">REAL WORLD PRODUCTS</span>
           </h2>
-
-          <p className="text-base md:text-lg leading-relaxed text-slate-300 max-w-3xl mx-auto mb-14">
-            With over 8 years of experience bridging technical leadership and strategic product thinking,
-            I specialize in designing end-to-end systems that scale — from mobile apps to cloud microservices.
-            I&apos;ve guided multicultural teams across Ecuador, Colombia, and the US, consistently delivering
-            solutions that reduce time-to-market, improve developer experience, and unlock measurable business value.
-            My approach combines architectural rigor with an AI-first mindset, helping teams do more with less friction.
+          <p className="text-base md:text-lg leading-relaxed text-slate-300 max-w-3xl mx-auto mb-4">
+            With 5+ years as a full-stack developer, I design and build scalable systems.
+            I’ve worked across mobile and web platforms, focusing on performance, developer experience, and maintainable architecture.
+            I’m particularly interested in evolving toward software architecture and cloud-native solutions, applying design patterns, clean architecture principles, and modern practices.
           </p>
+          <p className="text-base md:text-lg leading-relaxed text-slate-300 max-w-3xl mx-auto mb-4">
+            My goal is simple: build systems that are easy to scale, easy to maintain, and deliver real value.
+          </p>
+          <span className="shimmer-text text-xl">{" "}And don't forget, ship, ship, ship.</span>
         </AnimateOnScroll>
 
         <AnimateOnScroll animation="scale-in" delay={150}>
-          <div className="inline-block">
+          <div className="inline-block mt-4">
             <div
               className="relative px-10 py-8 rounded-xl overflow-hidden glow-pulse"
               style={{
@@ -72,16 +73,16 @@ export default function Narrative() {
               <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-[#E85D26] opacity-60" />
 
               <div className="text-xs font-bold tracking-[0.3em] text-slate-400 mb-3 uppercase">
-                Key Achievement
+                From concept to release
               </div>
               <div className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight">
-                CI/CD:{" "}
-                <span className="text-slate-400 line-through decoration-[#E85D26]">1 DAY</span>
+                Product delivery:{" "}
+                <span className="text-slate-400 line-through decoration-[#E85D26]">Idea</span>
                 <span className="text-white mx-3">→</span>
-                <span className="text-[#E85D26]">1 HOUR</span>
+                <span className="text-[#E85D26]">Production</span>
               </div>
               <div className="text-sm text-slate-400 mt-3 tracking-wider">
-                Pipeline optimization via GitHub Actions + Docker + AWS ECS
+                Led the development of mobile and web applications from concept to release
               </div>
             </div>
           </div>

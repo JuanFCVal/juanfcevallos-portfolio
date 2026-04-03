@@ -9,14 +9,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Juan F. Cevallos — Tech Lead & AI Multiplier",
+  title: "JuanFCVal — Software Engineer",
   description:
-    "Portfolio of Juan Francisco Cevallos — Tech Lead and AI Multiplier who transforms business goals into architectural reality.",
+    "Portfolio of Juan Francisco Cevallos (JuanFCVal) — Software Engineer and tech lead who loves to build and share knowledge. Explore my journey in tech.",
   keywords: ["Tech Lead", "AI", "Software Engineer", "Portfolio", "Juan Cevallos"],
-  authors: [{ name: "Juan Francisco Cevallos" }],
+  authors: [{ name: "Juan Francisco Cevallos / JuanFCVal" }],
   openGraph: {
-    title: "Juan F. Cevallos — Tech Lead & AI Multiplier",
-    description: "Transforming business goals into architectural reality.",
+    title: "Juan F. Cevallos — FULL-STACK SOFTWARE ENGINEER",
+    description: "Using technology to boost reality. Explore my projects, insights, and journey in tech.",
     type: "website",
   },
 };
@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
-      <body className="min-h-screen antialiased" style={{ background: "#F8F9FC", color: "#1B2A4A" }}>
+      <body className="min-h-screen antialiased">
         {children}
       </body>
     </html>

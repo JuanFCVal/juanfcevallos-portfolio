@@ -3,46 +3,46 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 const layers = [
   {
-    id: "mobile",
-    label: "MOBILE",
-    sublabel: "React Native",
-    desc: "Cross-platform iOS & Android app with offline-first architecture and real-time sync",
+    id: "understanding",
+    label: "UNDERSTANDING",
+    sublabel: "Requirements Gathering · User Research",
+    desc: "Define: Why are we building this? Who is it for? What problem does it solve? Align on goals and success metrics.",
     color: "#E85D26",
     bg: "rgba(232,93,38,0.08)",
     border: "rgba(232,93,38,0.3)",
   },
   {
-    id: "gateway",
-    label: "API GATEWAY",
-    sublabel: "Next.js / tRPC",
-    desc: "Type-safe API layer handling auth, rate limiting, request routing & edge caching",
+    id: "requirements",
+    label: "REQUIREMENTS",
+    sublabel: "Functional · Non-functional",
+    desc: "Define requirements, functional and non-functional.",
     color: "#2D4A6E",
     bg: "rgba(45,74,110,0.08)",
     border: "rgba(45,74,110,0.3)",
   },
   {
-    id: "microservices",
-    label: "CMS / MICROSERVICES",
-    sublabel: "Next.js · Node.js · AWS Lambda",
-    desc: "Headless CMS + independent services for notifications, payments, and analytics",
+    id: "Prototyping",
+    label: "PROTOTYPING",
+    sublabel: "Design · Wireframes · MVPs",
+    desc: "Validate assumptions and gather feedback early.",
     color: "#1B2A4A",
     bg: "rgba(27,42,74,0.06)",
     border: "rgba(27,42,74,0.25)",
   },
   {
-    id: "databases",
-    label: "DATABASES",
-    sublabel: "PostgreSQL · MongoDB · Redis",
-    desc: "Relational + document stores with Redis cache layer and automated backups",
+    id: "architecture",
+    label: "ARCHITECTURE",
+    sublabel: "Define structure · Tech stack",
+    desc: "Design scalable and maintainable systems that align with requirements and constraints.",
     color: "#2D4A6E",
     bg: "rgba(45,74,110,0.08)",
     border: "rgba(45,74,110,0.3)",
   },
   {
-    id: "identity",
-    label: "IDENTITY PROVIDER",
-    sublabel: ".NET / Auth0",
-    desc: "Centralized authentication, RBAC, SSO, and OAuth2 / OIDC integration",
+    id: "development",
+    label: "DEVELOPMENT",
+    sublabel: "Implementation · Testing",
+    desc: "Build the product iteratively, focusing on delivering value and maintaining quality.",
     color: "#E85D26",
     bg: "rgba(232,93,38,0.08)",
     border: "rgba(232,93,38,0.3)",
@@ -50,13 +50,13 @@ const layers = [
 ];
 
 const architecturePrinciples = [
-  { title: "Separation of Concerns", desc: "Each layer has a single responsibility and communicates via typed APIs" },
-  { title: "Cloud-Native by Default", desc: "AWS Lambda, ECS, and RDS for elastic scaling without infrastructure overhead" },
-  { title: "Zero-Trust Security", desc: "Auth at every boundary, RBAC enforcement, and audit trails throughout" },
-  { title: "Developer Experience First", desc: "Type-safe end-to-end with tRPC + TypeScript, local dev parity" },
+  { title: "Accountability", desc: "Everyone is responsible for their code and its impact on the system." },
+  { title: "Growth", desc: "Foster a culture of feedback and improvement." },
+  { title: "Continuous Learning", desc: "Embrace experimentation and learning from failures." },
+  { title: "Connection", desc: "I value getting to know people, learning about their experiences and perspectives." },
 ];
 
-const coreStack = ["Next.js", "React Native", "Node.js", ".NET", "AWS", "Docker", "PostgreSQL", "MongoDB", "Redis", "TypeScript", "tRPC", "Auth0"];
+const coreStack = ["TypeScript", "Python", "Javascript", "React", "Angular", "Next.js", "React Native", "Ionic", "Nest.js", "Express.js", "Node.js", "AWS", "Docker", "PostgreSQL", "MongoDB"];
 
 export default function Architecture() {
   return (
@@ -71,17 +71,22 @@ export default function Architecture() {
           <AnimateOnScroll animation="fade-right">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-0.5 bg-[#E85D26]" />
-              <span className="text-xs font-bold tracking-[0.3em] text-[#E85D26] uppercase">Architecture</span>
+              <span className="text-xs font-bold tracking-[0.3em] text-[#E85D26] uppercase">Experience</span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-black text-[#1B2A4A] leading-tight mb-6">
-              PLATFORM
+              My journey
               <br />
-              <span className="text-[#2D4A6E]">ARCHITECTURE.</span>
+              <span className="text-[#2D4A6E]">in tech.</span>
             </h2>
+            <p className="text-slate-600 text-sm leading-relaxed mb-4 max-w-md">
+              My journey started in mobile development, but quickly evolved into building full-stack systems across web and backend.
+              Over time, I moved from implementing features to shaping how systems are designed defining structure, improving workflows, and helping teams deliver more effectively.
+              Today, I focus on building scalable products while bringing clarity, ownership, and technical direction to the development process.
+            </p>
+            <br />
             <p className="text-slate-600 text-sm leading-relaxed mb-8 max-w-md">
-              End-to-end architecture for the PPM/Sorvo digital platform — a multi-tenant,
-              multi-platform ecosystem built for scale. Each layer is independently deployable,
-              observable, and connected through a typed contract layer.
+              Now life has brought me to more managerial and architectural roles, but I love to build. I always find space to keep coding and stay close. My heart is into building things, and I want to keep doing it for a long time. I want to keep building, learning, and growing as long as I can.
+              And this is what I value the most in my work:
             </p>
 
             <div className="space-y-4">
@@ -120,7 +125,7 @@ export default function Architecture() {
                   className="inline-block text-xs font-bold tracking-[0.2em] text-[#2D4A6E] px-4 py-1.5 rounded-full border border-[#2D4A6E]/30"
                   style={{ background: "rgba(45,74,110,0.06)" }}
                 >
-                  PLATFORM
+                  How I work?
                 </span>
               </div>
             </AnimateOnScroll>

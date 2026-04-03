@@ -1,11 +1,11 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #F8F9FC;
-  --foreground: #1B2A4A;
-  --primary: #1B2A4A;
-  --accent: #2D4A6E;
-  --highlight: #E85D26;
+  --background: #f8f9fc;
+  --foreground: #1b2a4a;
+  --primary: #1b2a4a;
+  --accent: #2d4a6e;
+  --highlight: #e85d26;
 }
 
 @theme inline {
@@ -26,52 +26,94 @@ body {
 }
 
 .geo-pattern {
-  background-image: radial-gradient(circle, #1B2A4A22 1px, transparent 1px);
+  background-image: radial-gradient(circle, #1b2a4a22 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
-/* ─── Scroll-triggered animations ─── */
-
 .aos {
   opacity: 0;
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
 }
 
-.aos.fade-up   { transform: translateY(28px); }
-.aos.fade-down { transform: translateY(-28px); }
-.aos.fade-left { transform: translateX(-28px); }
-.aos.fade-right{ transform: translateX(28px); }
-.aos.scale-in  { transform: scale(0.93); }
+.aos.fade-up {
+  transform: translateY(28px);
+}
+.aos.fade-down {
+  transform: translateY(-28px);
+}
+.aos.fade-left {
+  transform: translateX(-28px);
+}
+.aos.fade-right {
+  transform: translateX(28px);
+}
+.aos.scale-in {
+  transform: scale(0.93);
+}
 
 .aos.visible {
   opacity: 1;
   transform: translateY(0) translateX(0) scale(1);
 }
 
-.delay-100 { transition-delay: 100ms; }
-.delay-200 { transition-delay: 200ms; }
-.delay-300 { transition-delay: 300ms; }
-.delay-400 { transition-delay: 400ms; }
-.delay-500 { transition-delay: 500ms; }
-.delay-600 { transition-delay: 600ms; }
-.delay-700 { transition-delay: 700ms; }
-.delay-800 { transition-delay: 800ms; }
+.delay-100 {
+  transition-delay: 100ms;
+}
+.delay-200 {
+  transition-delay: 200ms;
+}
+.delay-300 {
+  transition-delay: 300ms;
+}
+.delay-400 {
+  transition-delay: 400ms;
+}
+.delay-500 {
+  transition-delay: 500ms;
+}
+.delay-600 {
+  transition-delay: 600ms;
+}
+.delay-700 {
+  transition-delay: 700ms;
+}
+.delay-800 {
+  transition-delay: 800ms;
+}
 
 /* ─── Hero entrance (on page load, not scroll) ─── */
 
 @keyframes heroFadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes heroFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes portraitReveal {
-  from { opacity: 0; transform: scale(0.88); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .hero-item {
@@ -79,12 +121,24 @@ body {
   animation: heroFadeUp 0.7s ease forwards;
 }
 
-.hero-item-1 { animation-delay: 0.1s; }
-.hero-item-2 { animation-delay: 0.25s; }
-.hero-item-3 { animation-delay: 0.4s; }
-.hero-item-4 { animation-delay: 0.55s; }
-.hero-item-5 { animation-delay: 0.7s; }
-.hero-item-6 { animation-delay: 0.85s; }
+.hero-item-1 {
+  animation-delay: 0.1s;
+}
+.hero-item-2 {
+  animation-delay: 0.25s;
+}
+.hero-item-3 {
+  animation-delay: 0.4s;
+}
+.hero-item-4 {
+  animation-delay: 0.55s;
+}
+.hero-item-5 {
+  animation-delay: 0.7s;
+}
+.hero-item-6 {
+  animation-delay: 0.85s;
+}
 
 .hero-portrait {
   opacity: 0;
@@ -94,8 +148,13 @@ body {
 /* ─── Float (portrait) ─── */
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .float-anim {
@@ -105,8 +164,13 @@ body {
 /* ─── Cursor blink ─── */
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .cursor-blink {
@@ -116,8 +180,17 @@ body {
 /* ─── Glow pulse (CI/CD stat block) ─── */
 
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 60px rgba(232,93,38,0.15), inset 0 1px 0 rgba(255,255,255,0.05); }
-  50%       { box-shadow: 0 0 80px rgba(232,93,38,0.35), inset 0 1px 0 rgba(255,255,255,0.05); }
+  0%,
+  100% {
+    box-shadow:
+      0 0 60px rgba(232, 93, 38, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow:
+      0 0 80px rgba(232, 93, 38, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
 }
 
 .glow-pulse {
@@ -127,12 +200,16 @@ body {
 /* ─── Shimmer (highlight text) ─── */
 
 @keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 .shimmer-text {
-  background: linear-gradient(90deg, #E85D26 25%, #ff8c5a 50%, #E85D26 75%);
+  background: linear-gradient(90deg, #e85d26 25%, #ff8c5a 50%, #e85d26 75%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

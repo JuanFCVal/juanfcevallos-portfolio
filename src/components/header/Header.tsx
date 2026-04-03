@@ -1,16 +1,14 @@
 "use client";
 import { useState } from "react";
-import LinkedInIcon from "./icons/LinkedInIcon";
-import TikTokIcon from "./icons/TikTokIcon";
-import XIcon from "./icons/XIcon";
-import GlobeIcon from "./icons/GlobeIcon";
-import MenuIcon from "./icons/MenuIcon";
 import CloseIcon from "./icons/CloseIcon";
+import GithubIIcon from "./icons/GithubIcon";
+import LinkedInIcon from "./icons/LinkedInIcon";
+import MenuIcon from "./icons/MenuIcon";
+import TikTokIcon from "./icons/TikTokIcon";
 
 const navLinks = [
+  { label: "ABOUT ME", href: "#about" },
   { label: "EXPERIENCE", href: "#experience" },
-  { label: "LEADERSHIP", href: "#leadership" },
-  { label: "ARCHITECTURE", href: "#architecture" },
   { label: "COMMUNITY", href: "#community" },
   { label: "CONTACT", href: "#contact" },
 ];
@@ -24,20 +22,19 @@ export default function Header() {
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-2">
             <a href="#" className="text-sm font-bold tracking-widest text-[#1B2A4A] hover:text-[#2D4A6E] transition-colors">
-              JUAN FRANCISCO CEVALLOS
+              JuanFCVal
             </a>
             <div className="flex items-center gap-3 text-[#2D4A6E]">
-              <a href="https://linkedin.com/in/juanfcevallos" target="_blank" rel="noopener noreferrer" className="hover:text-[#E85D26] transition-colors" aria-label="LinkedIn">
+              <a href="https://linkedin.com/in/juanfcval" target="_blank" rel="noopener noreferrer" className="hover:text-[#E85D26] transition-colors" aria-label="LinkedIn">
                 <LinkedInIcon />
               </a>
-              <a href="https://tiktok.com/@juanfcevallos" target="_blank" rel="noopener noreferrer" className="hover:text-[#E85D26] transition-colors" aria-label="TikTok">
+              <a href="https://www.tiktok.com/@juanfcval" target="_blank" rel="noopener noreferrer" className="hover:text-[#E85D26] transition-colors" aria-label="TikTok">
                 <TikTokIcon />
               </a>
-              <a href="https://x.com/juanfcevallos" target="_blank" rel="noopener noreferrer" className="hover:text-[#E85D26] transition-colors" aria-label="X / Twitter">
-                <XIcon />
-              </a>
-              <a href="#" className="hover:text-[#E85D26] transition-colors" aria-label="Website">
-                <GlobeIcon />
+              <a href="https://github.com/JuanFCVal" target="_blank" rel="noopener noreferrer" className="hover:text-[#E85D26] transition-colors" aria-label="Github">
+                <GithubIIcon
+
+                />
               </a>
             </div>
           </div>

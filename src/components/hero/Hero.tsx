@@ -1,11 +1,11 @@
+import Image from "next/image";
 import NetworkBackground from "./svgs/NetworkBackground";
 import PortraitNetwork from "./svgs/PortraitNetwork";
-import StatCounter from "./StatCounter";
 
 export default function Hero() {
   return (
     <section
-      id="about"
+      id="#about"
       className="relative overflow-hidden min-h-screen flex items-center"
       style={{ background: "#F8F9FC" }}
     >
@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           <div className="flex justify-center lg:justify-end order-2 lg:order-1">
-            <div className="relative hero-portrait">
+            <div className="relative">
               <div className="absolute -inset-4 rounded-full border border-[#2D4A6E]/20 animate-spin" style={{ animationDuration: "30s" }} />
               <div className="absolute -inset-8 rounded-full border border-dashed border-[#2D4A6E]/10" />
 
@@ -27,53 +27,55 @@ export default function Hero() {
                   boxShadow: "0 20px 60px rgba(27,42,74,0.25), 0 0 0 6px rgba(45,74,110,0.15)",
                 }}
               >
-                <PortraitNetwork />
-                <div className="absolute inset-0 flex items-center justify-center flex-col gap-1">
-                  <span className="text-5xl font-black text-white/90 tracking-tight">JF</span>
-                  <span className="text-xs font-semibold tracking-[0.3em] text-white/50 uppercase">Cevallos</span>
-                </div>
+                <Image
+                  alt="Profile picture of Juan F. Cevallos"
+                  src="/profile_pic.jpeg"
+                  width={300}
+                  height={300}
+                  loading="eager"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               <div
                 className="absolute -bottom-3 -right-3 bg-white rounded-xl px-3 py-2 shadow-lg border border-slate-100"
                 style={{ boxShadow: "0 4px 20px rgba(27,42,74,0.12)" }}
               >
-                <span className="text-xs font-bold text-[#E85D26] tracking-wider">TECH LEAD</span>
+                <span className="text-xs font-bold text-[#E85D26] tracking-wider">Me, hiking. Now, let's take your company to new heights.</span>
               </div>
             </div>
           </div>
 
           <div className="order-1 lg:order-2 flex flex-col gap-6">
-            <div className="hero-item hero-item-1">
-              <h1 className="text-5xl lg:text-7xl font-black leading-tight tracking-tight">
-                <span className="text-[#1B2A4A]">JUAN F.</span>
+            <div>
+              <h1 className="text-4xl lg:text-5xl font-black leading-tight tracking-tight">
+                <span className="text-[#1B2A4A]">Juan Francisco</span>
                 <br />
-                <span className="text-[#2D4A6E]">CEVALLOS.</span>
+                <span className="text-[#2D4A6E]">Cevallos Valdivieso</span>
               </h1>
             </div>
 
-            <div className="hero-item hero-item-2 flex items-center gap-3">
+            <div className="flex items-center gap-3">
               <div className="w-8 h-0.5 bg-[#E85D26]" />
               <p className="text-lg font-bold tracking-widest text-[#1B2A4A] uppercase">
-                Tech Lead &amp; AI Multiplier
+                Software Engineer
               </p>
             </div>
 
-            <p className="hero-item hero-item-3 text-base leading-relaxed text-slate-600 max-w-lg">
-              I bridge strategy and execution — designing{" "}
+            <p className="text-base leading-relaxed text-slate-600 max-w-lg">
+              I bridge strategy and execution designing{" "}
               <span className="font-semibold text-[#E85D26] bg-[#E85D26]/10 px-1 rounded">
-                scalable solutions
+                scalable and maintainable solutions
               </span>{" "}
-              that align business goals with technical architecture. Passionate about building{" "}
+              that align business goals with technical execution. Passionate about building{" "}
               <span className="font-semibold text-[#E85D26] bg-[#E85D26]/10 px-1 rounded">
-                internal AI productivity tools
-              </span>{" "}
-              and fostering high-performance multicultural teams across Latin America and beyond.
+                and boosting reality with technology.
+              </span>
             </p>
 
-            <div className="hero-item hero-item-4 flex flex-wrap gap-3 mt-2">
+            <div className="flex flex-wrap gap-3 mt-2">
               <a
-                href="/CV_EN_JuanCevallos_SoftwareEngineer.pdf"
+                href="/Juan_Cevallos_CV_2026_en.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#1B2A4A] text-[#1B2A4A] text-sm font-bold tracking-widest hover:bg-[#1B2A4A] hover:text-white transition-all rounded-sm before:content-['['] after:content-[']'] before:text-[#E85D26] after:text-[#E85D26] before:font-black after:font-black"
@@ -81,7 +83,7 @@ export default function Hero() {
                 CV
               </a>
               <a
-                href="https://linkedin.com/in/juanfcevallos"
+                href="https://linkedin.com/in/juanfcval"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#2D4A6E] text-[#2D4A6E] text-sm font-bold tracking-widest hover:bg-[#2D4A6E] hover:text-white transition-all rounded-sm before:content-['['] after:content-[']'] before:text-[#E85D26] after:text-[#E85D26] before:font-black after:font-black"
@@ -89,35 +91,25 @@ export default function Hero() {
                 LINKEDIN
               </a>
               <a
-                href="mailto:juan@cevallos.dev"
+                href="mailto:juanfcval@gmail.com"
                 className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#E85D26] text-[#E85D26] text-sm font-bold tracking-widest hover:bg-[#E85D26] hover:text-white transition-all rounded-sm before:content-['['] after:content-[']'] before:text-[#1B2A4A] after:text-[#1B2A4A] before:font-black after:font-black"
               >
                 EMAIL
               </a>
             </div>
 
-            <div className="hero-item hero-item-5 flex flex-wrap gap-6 mt-4 pt-4 border-t border-slate-200">
-              <div>
-                <div className="text-2xl font-black text-[#1B2A4A]">
-                  <StatCounter value={8} suffix="+" />
-                </div>
+            <div className="flex flex-wrap gap-6 mt-4 pt-4 border-t border-slate-200 items-center">
+              <div className="text-center">
+                <div className="text-2xl font-black text-[#1B2A4A]">5+</div>
                 <div className="text-xs text-slate-500 tracking-wider uppercase mt-0.5">Years Exp.</div>
               </div>
-              <div>
-                <div className="text-2xl font-black text-[#1B2A4A]">
-                  <StatCounter value={12} suffix="+" />
-                </div>
+              <div className="text-center">
+                <div className="text-2xl font-black text-[#1B2A4A]">2</div>
                 <div className="text-xs text-slate-500 tracking-wider uppercase mt-0.5">Teams Led</div>
               </div>
-              <div>
-                <div className="text-2xl font-black text-[#1B2A4A]">
-                  <StatCounter value={3} />
-                </div>
-                <div className="text-xs text-slate-500 tracking-wider uppercase mt-0.5">Countries</div>
-              </div>
-              <div>
-                <div className="text-2xl font-black text-[#E85D26]">AI</div>
-                <div className="text-xs text-slate-500 tracking-wider uppercase mt-0.5">Multiplier</div>
+              <div className="text-center">
+                <div className="text-2xl font-black text-[#E85D26]">+10k</div>
+                <div className="text-xs text-slate-500 tracking-wider uppercase mt-0.5">Users Served</div>
               </div>
             </div>
           </div>

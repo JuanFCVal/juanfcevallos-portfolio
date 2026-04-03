@@ -7,9 +7,6 @@ import TravelBackground from "./svgs/TravelBackground";
 import SportsBackground from "./svgs/SportsBackground";
 import RemoteWorkBackground from "./svgs/RemoteWorkBackground";
 
-const destinations = [
-  "Colombia", "USA", "Mexico", "Peru", "Spain", "Argentina",
-];
 
 export default function BentoBox() {
   return (
@@ -25,9 +22,8 @@ export default function BentoBox() {
             <div className="w-8 h-0.5 bg-[#E85D26]" />
           </div>
           <h2 className="text-3xl lg:text-4xl font-black text-[#1B2A4A] leading-tight">
-            PERSONAL CONNECTION &amp;
+            MORE ABOUT ME
             <br />
-            <span className="text-[#2D4A6E]">HOBBY BENTO BOX.</span>
           </h2>
           <p className="text-slate-500 text-sm mt-3 max-w-md mx-auto">
             Work is what I do; these are what I love.
@@ -35,7 +31,6 @@ export default function BentoBox() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
-
           <div
             className="lg:row-span-2 relative rounded-2xl overflow-hidden p-8 flex flex-col justify-between min-h-64"
             style={{
@@ -51,23 +46,11 @@ export default function BentoBox() {
               <div className="text-xs font-bold tracking-[0.3em] text-[#E85D26] mb-2 uppercase">Hobby</div>
               <h3 className="text-3xl font-black text-white mb-3">TRAVEL</h3>
               <p className="text-slate-300 text-sm leading-relaxed">
-                Exploring different cultures sharpens perspective — both in design and in life.
+                Exploring different cultures sharpens perspective in life.
                 Remote work has let me turn the world into my office.
               </p>
             </div>
-            <div className="relative mt-6">
-              <div className="text-xs font-bold text-slate-400 tracking-wider mb-3 uppercase">Visited</div>
-              <div className="flex flex-wrap gap-2">
-                {destinations.map((dest) => (
-                  <span
-                    key={dest}
-                    className="text-xs font-semibold text-white/80 bg-white/10 px-2.5 py-1 rounded-full border border-white/10"
-                  >
-                    {dest}
-                  </span>
-                ))}
-              </div>
-            </div>
+
           </div>
 
           <div
@@ -89,11 +72,10 @@ export default function BentoBox() {
             </div>
             <div className="relative">
               <p className="text-white/80 text-sm leading-relaxed">
-                Football fanatic &amp; amateur runner. Competitive spirit on the pitch mirrors
-                how I push engineering teams to excellence.
+                Football fanatic &amp; amateur runner. Sports are my go-to for recharging.
               </p>
               <div className="flex gap-2 mt-3">
-                {["⚽ Football", "🏃 Running", "🎾 Tennis"].map((s) => (
+                {["⚽ Football", "🏃 Running", "🏋️‍♂️ Weightlifting"].map((s) => (
                   <span key={s} className="text-xs font-semibold bg-white/15 text-white px-2 py-0.5 rounded-full">{s}</span>
                 ))}
               </div>
@@ -115,7 +97,7 @@ export default function BentoBox() {
               </div>
             </div>
             <p className="relative text-slate-500 text-sm leading-relaxed">
-              4+ years of async-first distributed work. I&apos;ve built frameworks for remote team health,
+              5+ years of async-first distributed work. I&apos;ve built frameworks for remote team health,
               rituals, and knowledge sharing.
             </p>
           </div>
@@ -134,7 +116,7 @@ export default function BentoBox() {
               </div>
             </div>
             <p className="text-slate-500 text-xs leading-relaxed mt-2">
-              Coding to lofi, leading to jazz. Music shapes every context-switch.
+              I listen to music 90% of the time.
             </p>
           </div>
 
@@ -154,8 +136,7 @@ export default function BentoBox() {
               </div>
             </div>
             <p className="text-slate-300 text-xs leading-relaxed mt-2">
-              Tech leadership, system design, and the occasional sci-fi novel.
-              Current: &quot;Staff Engineer&quot; by Will Larson.
+              Self improvement, fiction, and history. Always have a book on my nightstand.
             </p>
           </div>
 
