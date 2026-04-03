@@ -120,7 +120,7 @@ export default function Architecture() {
                   className="inline-block text-xs font-bold tracking-[0.2em] text-[#2D4A6E] px-4 py-1.5 rounded-full border border-[#2D4A6E]/30"
                   style={{ background: "rgba(45,74,110,0.06)" }}
                 >
-                  PPM / SORVO PLATFORM
+                  PLATFORM
                 </span>
               </div>
             </AnimateOnScroll>
