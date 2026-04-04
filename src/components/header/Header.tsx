@@ -11,6 +11,7 @@ const navLinks = [
   { label: "EXPERIENCE", href: "#experience" },
   { label: "COMMUNITY", href: "#community" },
   { label: "CONTACT", href: "#contact" },
+  { label: "INTERACTIVE MODE", href: "/playground/world" },
 ];
 
 export default function Header() {
