@@ -336,23 +336,23 @@ export default function WorldScene() {
     // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(mount.clientWidth, mount.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // cap at 2x — 3x DPR triples pixel cost
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     mount.appendChild(renderer.domElement);
 
-    // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    // Lights — keep total point lights low; directional + ambient carry most of the load
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.4);
     dirLight.position.set(5, 10, 5);
     dirLight.castShadow = true;
-    dirLight.shadow.mapSize.width = 1024;
-    dirLight.shadow.mapSize.height = 1024;
+    dirLight.shadow.mapSize.width = 512; // 512 is enough, saves shadow-map memory
+    dirLight.shadow.mapSize.height = 512;
     scene.add(dirLight);
 
-    const rimLight = new THREE.DirectionalLight(0x4466ff, 0.6);
+    const rimLight = new THREE.DirectionalLight(0x4466ff, 0.5);
     rimLight.position.set(-5, 3, -5);
     scene.add(rimLight);
 
@@ -442,11 +442,13 @@ export default function WorldScene() {
       scene.add(painting);
       paintingMeshes.push(painting);
 
-      // Spotlight above each painting
-      const spot = new THREE.PointLight(0xfff5e0, 1.2, 5);
-      spot.position.set(px, PAINT_Y + 3, WALL_Z + 2);
-      scene.add(spot);
+      // (lighting handled by single gallery zone light below)
     });
+
+    // Single wide point light for the entire gallery wall — replaces 5 individual spotlights
+    const galleryLight = new THREE.PointLight(0xfff5e0, 1.4, 18);
+    galleryLight.position.set(0, PAINT_Y + 4, WALL_Z + 5);
+    scene.add(galleryLight);
 
     // --- Stats pedestals ---
     const goldMat = new THREE.MeshStandardMaterial({ color: 0xc8a84b, roughness: 0.3, metalness: 0.7 });
@@ -476,10 +478,7 @@ export default function WorldScene() {
       );
       sign.position.set(px, 1.35, pz + 0.36);
       scene.add(sign);
-      // Glow light
-      const glow = new THREE.PointLight(0xe85d26, 0.5, 3.5);
-      glow.position.set(px, 2.6, pz + 0.5);
-      scene.add(glow);
+      // (no per-pedestal point light — ambient + directional is sufficient)
     });
 
     // --- Tech Stack wall (left, x = -12.8) ---
@@ -522,14 +521,12 @@ export default function WorldScene() {
       const ox = -11.4;
       const oy = 1.6 + row * 2.2;
       const oz = -1.0 - col * 2.6;
-      // Orb
-      const orbMat = new THREE.MeshStandardMaterial({
-        color: tech.color, emissive: tech.color, emissiveIntensity: 0.55,
-        roughness: 0.3, metalness: 0.1,
-      });
-      const orb = new THREE.Mesh(new THREE.SphereGeometry(0.38, 16, 12), orbMat);
+      // Orb — MeshBasicMaterial: emissive look with zero lighting cost; no shadow needed
+      const orb = new THREE.Mesh(
+        new THREE.SphereGeometry(0.38, 10, 8),
+        new THREE.MeshBasicMaterial({ color: tech.color })
+      );
       orb.position.set(ox, oy, oz);
-      orb.castShadow = true;
       scene.add(orb);
       orbMeshes.push(orb);
       // Label billboard
@@ -598,11 +595,13 @@ export default function WorldScene() {
       hpanel.rotation.y = -Math.PI / 2;
       scene.add(hpanel);
       hobbyMeshes.push(hpanel);
-      // Spotlight
-      const hspot = new THREE.PointLight(0xfff5e0, 0.9, 4.5);
-      hspot.position.set(11.0, hy + 2.5, hz);
-      scene.add(hspot);
+      // (lighting handled by single about-wall zone light below)
     });
+
+    // Single wide point light for the about-me wall — replaces 4 individual spotlights
+    const aboutLight = new THREE.PointLight(0xfff5e0, 1.2, 16);
+    aboutLight.position.set(10, 5, -3);
+    scene.add(aboutLight);
 
     // --- Character ---
     const character = new THREE.Group();
@@ -718,6 +717,7 @@ export default function WorldScene() {
       const rect = renderer.domElement.getBoundingClientRect();
       mouseNDC.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       mouseNDC.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      mouseNDCDirty = true;
 
       if (!isDragging) return;
       const dx = e.clientX - lastDragX;
@@ -840,12 +840,21 @@ export default function WorldScene() {
     let isMoving = false;
 
     let frameId: number;
-    const clock = new THREE.Clock();
+    let prevTime = performance.now();
     let elapsed = 0;
+
+    // Pre-allocate vectors to avoid per-frame heap allocation
+    const _moveDir = new THREE.Vector3();
+    const _targetCam = new THREE.Vector3();
+    // Pre-build clickables array once — no spread allocation every frame
+    const clickables: THREE.Mesh[] = [...paintingMeshes, ...hobbyMeshes];
+    let mouseNDCDirty = false; // only raycast when mouse actually moved
 
     const animate = () => {
       frameId = requestAnimationFrame(animate);
-      const dt = Math.min(clock.getDelta(), 0.05);
+      const now = performance.now();
+      const dt = Math.min((now - prevTime) / 1000, 0.05);
+      prevTime = now;
       elapsed += dt;
       const t = elapsed;
 
@@ -855,7 +864,8 @@ export default function WorldScene() {
       const camRgtX = Math.cos(camAzimuth);
       const camRgtZ = -Math.sin(camAzimuth);
 
-      const moveDir = new THREE.Vector3();
+      _moveDir.set(0, 0, 0);
+      const moveDir = _moveDir;
       if (keys["w"] || keys["arrowup"])    { moveDir.x += camFwdX; moveDir.z += camFwdZ; }
       if (keys["s"] || keys["arrowdown"])  { moveDir.x -= camFwdX; moveDir.z -= camFwdZ; }
       if (keys["a"] || keys["arrowleft"])  { moveDir.x -= camRgtX; moveDir.z -= camRgtZ; }
@@ -908,16 +918,17 @@ export default function WorldScene() {
       const targetCamX = charPos.x + CAM_RADIUS * sinP * Math.sin(camAzimuth);
       const targetCamY = CAM_RADIUS * cosP + 1;
       const targetCamZ = charPos.z + CAM_RADIUS * sinP * Math.cos(camAzimuth);
-      camera.position.lerp(new THREE.Vector3(targetCamX, targetCamY, targetCamZ), 0.1);
+      _targetCam.set(targetCamX, targetCamY, targetCamZ);
+      camera.position.lerp(_targetCam, 0.1);
       camera.lookAt(charPos.x, 1, charPos.z);
 
       // Billboard labels always face camera
       for (const label of orbLabels) label.lookAt(camera.position);
 
-      // Hover cursor (paintings + hobby panels)
-      if (!isDragging) {
+      // Hover cursor — only raycast when mouse actually moved (mouseNDCDirty flag)
+      if (!isDragging && mouseNDCDirty) {
+        mouseNDCDirty = false;
         raycaster.setFromCamera(mouseNDC, camera);
-        const clickables = [...paintingMeshes, ...hobbyMeshes];
         const hits = raycaster.intersectObjects(clickables);
         renderer.domElement.style.cursor = hits.length > 0 ? "pointer" : "grab";
       }
