@@ -7,53 +7,69 @@ import MenuIcon from "./icons/MenuIcon";
 import TikTokIcon from "./icons/TikTokIcon";
 
 const navLinks = [
-  { label: "ABOUT ME", href: "#about" },
+  { label: "ABOUT", href: "#about" },
   { label: "EXPERIENCE", href: "#experience" },
+  { label: "WORK", href: "#projects" },
   { label: "COMMUNITY", href: "#community" },
   { label: "CONTACT", href: "#contact" },
-  { label: "INTERACTIVE MODE", href: "/playground/world" },
 ];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 py-3">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex flex-col gap-2">
-            <a href="#" className="text-sm font-bold tracking-widest text-[#1B2A4A] hover:text-[#2D4A6E] transition-colors">
-              JuanFCVal
-            </a>
-            <div className="flex items-center gap-3 text-[#2D4A6E]">
-              <a href="https://linkedin.com/in/juanfcval" target="_blank" rel="noopener noreferrer" className="hover:text-[#E85D26] transition-colors" aria-label="LinkedIn">
-                <LinkedInIcon />
-              </a>
-              <a href="https://www.tiktok.com/@juanfcval" target="_blank" rel="noopener noreferrer" className="hover:text-[#E85D26] transition-colors" aria-label="TikTok">
-                <TikTokIcon />
-              </a>
-              <a href="https://github.com/JuanFCVal" target="_blank" rel="noopener noreferrer" className="hover:text-[#E85D26] transition-colors" aria-label="Github">
-                <GithubIIcon
+    <header
+      className="sticky top-0 z-50 backdrop-blur-sm"
+      style={{
+        background: "rgba(8,8,8,0.92)",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+      }}
+    >
+      <div className="max-w-6xl mx-auto px-6 py-4">
+        <div className="flex items-center justify-between gap-6">
 
-                />
-              </a>
-            </div>
+          <div className="flex flex-col items-start">
+            <a
+              href="#"
+              className="font-mono text-xs font-bold tracking-[0.25em] text-accent hover:text-accent-light transition-colors"
+            >
+              HI
+            </a>
+            <span
+              className="font-mono text-xs tracking-[0.25em] select-none pointer-events-none"
+              style={{ color: "rgba(255,255,255,0.35)" }}
+              aria-hidden="true"
+            >
+              ↑↓→→←
+            </span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-1 mt-1">
+          <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-xs font-semibold tracking-wider text-[#1B2A4A] hover:text-[#E85D26] transition-colors px-3 py-1.5 rounded hover:bg-slate-50 before:content-['['] after:content-[']'] before:mr-0.5 after:ml-0.5 before:text-[#2D4A6E] after:text-[#2D4A6E]"
+                className="font-mono text-xs tracking-[0.18em] text-secondary hover:text-primary transition-colors px-3 py-1.5 rounded hover:bg-white/5"
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
+          <div className="hidden md:flex items-center gap-3 text-secondary">
+            <a href="https://linkedin.com/in/juanfcval" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="LinkedIn">
+              <LinkedInIcon />
+            </a>
+            <a href="https://github.com/JuanFCVal" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="GitHub">
+              <GithubIIcon />
+            </a>
+            <a href="https://www.tiktok.com/@juanfcval" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="TikTok">
+              <TikTokIcon />
+            </a>
+          </div>
+
           <button
-            className="md:hidden text-[#1B2A4A] mt-1"
+            className="md:hidden text-secondary hover:text-primary transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle navigation menu"
           >
@@ -62,17 +78,28 @@ export default function Header() {
         </div>
 
         {menuOpen && (
-          <nav className="md:hidden mt-3 pb-2 border-t border-slate-100 pt-3 flex flex-col gap-1">
+          <nav
+            className="md:hidden mt-3 pt-3 flex flex-col gap-1"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+          >
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-xs font-semibold tracking-wider text-[#1B2A4A] hover:text-[#E85D26] transition-colors px-2 py-2 rounded hover:bg-slate-50 before:content-['['] after:content-[']'] before:mr-0.5 after:ml-0.5 before:text-[#2D4A6E] after:text-[#2D4A6E]"
+                className="font-mono text-xs tracking-[0.18em] text-secondary hover:text-primary transition-colors px-2 py-2.5 rounded hover:bg-white/5"
               >
                 {link.label}
               </a>
             ))}
+            <div
+              className="flex items-center gap-4 px-2 pt-3 mt-2 text-secondary"
+              style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+            >
+              <a href="https://linkedin.com/in/juanfcval" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="LinkedIn"><LinkedInIcon /></a>
+              <a href="https://github.com/JuanFCVal" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="GitHub"><GithubIIcon /></a>
+              <a href="https://www.tiktok.com/@juanfcval" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="TikTok"><TikTokIcon /></a>
+            </div>
           </nav>
         )}
       </div>

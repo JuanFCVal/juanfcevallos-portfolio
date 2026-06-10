@@ -1,218 +1,229 @@
 @import 'tailwindcss';
 
+/* ─────────────────────────────────────────────────────────────
+   PALETTE SOURCE OF TRUTH  ·  change only this block
+   ─────────────────────────────────────────────────────────────
+   Active: OLED Dark + Electric Teal
+   ─────────────────────────────────────────────────────────── */
 :root {
-  --background: #f8f9fc;
-  --foreground: #1b2a4a;
-  --primary: #1b2a4a;
-  --accent: #2d4a6e;
-  --highlight: #e85d26;
+  --primary:          #e8e8e8;   /* near-white  — headings, key text  */
+  --secondary:        #888888;   /* medium grey — body copy           */
+  --accent:           #00d4a8;   /* electric teal — CTAs, highlights  */
+  --accent-dark:      #00a882;   /* accent hover/press               */
+  --accent-light:     #5aebd4;   /* accent shimmer variant           */
+  --surface:          #080808;   /* OLED black  — main bg            */
+  --surface-alt:      #0e0e0e;   /* slightly lifted — alt sections   */
+  --surface-dark:     #080808;   /* kept for compatibility           */
+  --surface-darker:   #040404;   /* footer bg                        */
+  --muted:            #3a3a3a;   /* borders, captions                */
+  --card:             #151515;   /* card lift above surface          */
+
+  --primary-rgb:   232, 232, 232;
+  --secondary-rgb: 136, 136, 136;
+  --accent-rgb:    0, 212, 168;
 }
 
+/* ─── Tailwind v4 design tokens ────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-primary:        var(--primary);
+  --color-secondary:      var(--secondary);
+  --color-accent:         var(--accent);
+  --color-accent-dark:    var(--accent-dark);
+  --color-accent-light:   var(--accent-light);
+  --color-surface:        var(--surface);
+  --color-surface-alt:    var(--surface-alt);
+  --color-surface-dark:   var(--surface-dark);
+  --color-surface-darker: var(--surface-darker);
+  --color-muted:          var(--muted);
+  --color-card:           var(--card);
+  --color-background:     var(--surface);
+  --color-foreground:     var(--primary);
 }
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--surface);
+  color: var(--primary);
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.geo-pattern {
-  background-image: radial-gradient(circle, #1b2a4a22 1px, transparent 1px);
-  background-size: 28px 28px;
+a,
+button,
+[role="button"] {
+  cursor: pointer;
 }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─── Scroll-triggered reveal ─── */
 
 .aos {
   opacity: 0;
   transition:
-    opacity 0.65s ease,
-    transform 0.65s ease;
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
-.aos.fade-up {
-  transform: translateY(28px);
-}
-.aos.fade-down {
-  transform: translateY(-28px);
-}
-.aos.fade-left {
-  transform: translateX(-28px);
-}
-.aos.fade-right {
-  transform: translateX(28px);
-}
-.aos.scale-in {
-  transform: scale(0.93);
-}
+.aos.fade-up    { transform: translateY(24px); }
+.aos.fade-down  { transform: translateY(-24px); }
+.aos.fade-left  { transform: translateX(-24px); }
+.aos.fade-right { transform: translateX(24px); }
+.aos.scale-in   { transform: scale(0.94); }
 
 .aos.visible {
   opacity: 1;
   transform: translateY(0) translateX(0) scale(1);
 }
 
-.delay-100 {
-  transition-delay: 100ms;
-}
-.delay-200 {
-  transition-delay: 200ms;
-}
-.delay-300 {
-  transition-delay: 300ms;
-}
-.delay-400 {
-  transition-delay: 400ms;
-}
-.delay-500 {
-  transition-delay: 500ms;
-}
-.delay-600 {
-  transition-delay: 600ms;
-}
-.delay-700 {
-  transition-delay: 700ms;
-}
-.delay-800 {
-  transition-delay: 800ms;
-}
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+.delay-600 { transition-delay: 600ms; }
+.delay-700 { transition-delay: 700ms; }
+.delay-800 { transition-delay: 800ms; }
 
-/* ─── Hero entrance (on page load, not scroll) ─── */
+/* ─── Hero entrance (page load) ─── */
 
 @keyframes heroFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes heroFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes portraitReveal {
-  from {
-    opacity: 0;
-    transform: scale(0.88);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 .hero-item {
   opacity: 0;
-  animation: heroFadeUp 0.7s ease forwards;
+  animation: heroFadeUp 0.65s ease forwards;
 }
-
-.hero-item-1 {
-  animation-delay: 0.1s;
-}
-.hero-item-2 {
-  animation-delay: 0.25s;
-}
-.hero-item-3 {
-  animation-delay: 0.4s;
-}
-.hero-item-4 {
-  animation-delay: 0.55s;
-}
-.hero-item-5 {
-  animation-delay: 0.7s;
-}
-.hero-item-6 {
-  animation-delay: 0.85s;
-}
+.hero-item-1 { animation-delay: 0.1s; }
+.hero-item-2 { animation-delay: 0.22s; }
+.hero-item-3 { animation-delay: 0.34s; }
+.hero-item-4 { animation-delay: 0.46s; }
+.hero-item-5 { animation-delay: 0.58s; }
+.hero-item-6 { animation-delay: 0.70s; }
 
 .hero-portrait {
   opacity: 0;
-  animation: portraitReveal 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+  animation: portraitReveal 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s forwards;
 }
 
 /* ─── Float (portrait) ─── */
 
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
 }
 
-.float-anim {
-  animation: float 6s ease-in-out infinite;
-}
+.float-anim { animation: float 6s ease-in-out infinite; }
 
 /* ─── Cursor blink ─── */
 
 @keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
-.cursor-blink {
-  animation: blink 1s step-end infinite;
-}
+.cursor-blink { animation: blink 1s step-end infinite; }
 
-/* ─── Glow pulse (CI/CD stat block) ─── */
-
-@keyframes glowPulse {
-  0%,
-  100% {
-    box-shadow:
-      0 0 60px rgba(232, 93, 38, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
-  50% {
-    box-shadow:
-      0 0 80px rgba(232, 93, 38, 0.35),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
-}
-
-.glow-pulse {
-  animation: glowPulse 3s ease-in-out infinite;
-}
-
-/* ─── Shimmer (highlight text) ─── */
+/* ─── Shimmer (text) ─── */
 
 @keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
 }
 
 .shimmer-text {
-  background: linear-gradient(90deg, #e85d26 25%, #ff8c5a 50%, #e85d26 75%);
+  background: linear-gradient(
+    90deg,
+    var(--accent) 25%,
+    var(--accent-light) 50%,
+    var(--accent) 75%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: shimmer 3s linear infinite;
+}
+
+/* ─── Teal glow (used on portrait ring, key CTA) ─── */
+
+@keyframes tealPulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.12); }
+  50%       { box-shadow: 0 0 70px rgba(var(--accent-rgb), 0.28); }
+}
+
+.teal-glow { animation: tealPulse 3.5s ease-in-out infinite; }
+
+/* ─── Cursor blink terminal ─── */
+
+.cursor-blink { animation: blink 1s step-end infinite; }
+
+/* ─── Scroll indicator drop ─── */
+
+@keyframes scrollDrop {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(250%); opacity: 0; }
+}
+
+/* ─── Marquee (ticker strip) ─── */
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marqueeScroll 35s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ─── Respect prefers-reduced-motion ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none !important; }
+
+  .float-anim,
+  .teal-glow,
+  .shimmer-text,
+  .hero-item,
+  .hero-item-1,
+  .hero-item-2,
+  .hero-item-3,
+  .hero-item-4,
+  .hero-item-5,
+  .hero-item-6,
+  .hero-portrait {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .cursor-blink { animation: none !important; opacity: 1 !important; }
+
+  .aos {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
